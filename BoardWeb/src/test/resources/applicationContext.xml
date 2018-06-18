@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
+
+<context:component-scan base-package="polymorphism"/>
+<!-- 
+init-method="initMethod" 
+destroy-method="destoryMethod" 
+lazy-init="true" 
+scope="singleton" -->
+<!-- 	<constructor-arg ref="speaker"></constructor-arg>
+	<constructor-arg value="10000"></constructor-arg> -->
+<!-- <bean id="speaker" class="polymorphism.AppleSpeaker"/>
+<bean id="tv" class="polymorphism.LgTV">
+	 setspeaker() 메서드 호출
+	<property name="speaker" ref="speaker"></property>
+</bean>  -->
+
+<bean id="collectionBean" class="polymorphism.CollectionBean">
+	<property name="addressList">
+		<list>
+			<value>홍길동</value>
+			<value>을지문덕</value>
+			<value>김유신</value>
+		</list>
+	</property>
+</bean>
+
+</beans>
