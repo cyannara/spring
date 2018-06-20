@@ -34,7 +34,7 @@ public class HomeController {
 		System.out.println("test222");
 		model.addAttribute("serverTime", formattedDate );
 		
-		return "home";
+		return "home/home";
 	}
 	
 }
