@@ -25,6 +25,7 @@
 				FIRST_NAME      as "firstName",
 				LAST_NAME       as "lastName",
 				SALARY          as "salary",
+				EMAIL           as "email",
 				(SELECT DEPARTMENT_NAME 
 				   FROM HR.DEPARTMENTS DEPT
 				  WHERE DEPT.DEPARTMENT_ID = EMP.DEPARTMENT_ID) 
@@ -40,6 +41,29 @@
 		 </where>
 		 ORDER  BY EMPLOYEE_ID
 	</select>
+
+	<select id="getEmpListMap" resultType="map" parameterType="empVO">
+		SELECT	EMPLOYEE_ID ,
+				DEPARTMENT_ID ,
+				FIRST_NAME  ,
+				LAST_NAME    ,
+				SALARY       ,
+				EMAIL       ,
+				(SELECT DEPARTMENT_NAME 
+				   FROM HR.DEPARTMENTS DEPT
+				  WHERE DEPT.DEPARTMENT_ID = EMP.DEPARTMENT_ID) 
+				                as DEPARTMENT_NAME
+		  FROM  HR.EMPLOYEES EMP
+		 <where>
+		   <if test="departmentId != null and departmentId != ''"> 
+		     EMP.DEPARTMENT_ID = #{departmentId}
+		   </if>
+		   <if test="firstName != null and firstName != ''">
+		     AND  FIRST_NAME LIKE '%' || upper(#{firstName}) || '%'
+		   </if> 
+		 </where>
+		 ORDER  BY EMPLOYEE_ID
+	</select>	
 	
 	<!-- 단건 조회  -->
 	<select id="getEmp" resultType="empVO" parameterType="string">
@@ -92,4 +116,36 @@
 		 WHERE HR.EMPLOYEE_ID = #{id}
 	</delete>
 	
+	<!-- 부서 다건 삭제  -->
+	<delete id="deleteDeptList" >
+		DELETE FROM HR.DEPARTMENTS
+		 WHERE DEPARTMENT_ID IN 
+		 <foreach collection="list" item="item" 
+		          open="(" close=")" separator=",">
+		    #{item}
+		 </foreach>
+	</delete>
+	
+	
+	<!--  부서별 인원수  -->
+	<select id="getDeptCnt" resultType="map">
+		SELECT DEPARTMENT_NAME    AS "department_name",
+			   COUNT(EMPLOYEE_ID) AS "cnt"
+		  FROM HR.EMPLOYEES E , HR.DEPARTMENTS D
+		 WHERE E.DEPARTMENT_ID = D.DEPARTMENT_ID
+		 GROUP BY DEPARTMENT_NAME 	   
+	</select>
 </mapper>
+
+
+
+
+
+
+
+
+
+
+
+
+

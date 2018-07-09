@@ -1,5 +1,7 @@
 package com.company.app.board;
 
+import org.springframework.web.multipart.MultipartFile;
+
 public class BoardVO {
 	private String seq;
 	private String title;
@@ -7,6 +9,25 @@ public class BoardVO {
 	private String content;
 	private String regDate;
 	private int cnt;
+	
+	private String uploadfile;     //db에 저장될 파일명
+	//멀티파트 파일
+	MultipartFile tempuploadfile;  //임시 업로드 파일 
+	
+	
+	
+	public String getUploadfile() {
+		return uploadfile;
+	}
+	public void setUploadfile(String uploadfile) {
+		this.uploadfile = uploadfile;
+	}
+/*	public MultipartFile getTempuploadfile() {
+		return tempuploadfile;
+	}
+	public void setTempuploadfile(MultipartFile tempuploadfile) {
+		this.tempuploadfile = tempuploadfile;
+	}*/
 	private String searchKeyword;
 	private String searchCondition;
 	public String getSeq() {

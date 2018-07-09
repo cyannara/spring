@@ -9,7 +9,8 @@ $(function(){
 	function getCommentsList() {
 		var requestData = {"boardSeq": "${board.seq}" };
 		
-		$.ajax({
+		//json
+/* 		$.ajax({
 			url : "../getCommentsList",
 			data : requestData,
 			dataType : 'json',
@@ -23,7 +24,32 @@ $(function(){
 					$("#commentList").append(html);	
 				}
 			}
+		}); */
+		
+		//xml
+		$.ajax({
+			url : "../getCommentsXml",
+			data : requestData,
+			dataType : 'xml',
+			success : function(data) {	
+				var commentList = $(data).find("comment");
+				for( i=0; i< commentList.length; i++) {
+					console.log($(commentList[i]))
+					var name = $(commentList[i]).find("name").html();
+					var content = $(commentList[i]).find("content").html();
+					var seq = $(commentList[i]).attr("seq");
+					console.log(seq);
+					var html = '<div class="article" id="'
+								+ seq + '">'
+								+ name +'&nbsp;&nbsp;&nbsp;&nbsp;'
+								+ content
+								+ '</div>';
+					$("#commentList").append(html);	
+				}
+			}
 		});
+		
+		
 	}
 	
 	//댓글등록
@@ -53,12 +79,12 @@ $(function(){
 </script>
 </head>
 <body>
-등록후 확인<br>
-${vo}
+
 <hr>
 	제목: ${board.title} <br>
 	작성자: ${board.writer} <br>
 	내용: ${board.content} <br>
+	첨부파일 : <a href="downloadBoard?seq=${vo.seq}">${vo.uploadfile}</a> <br>
 	
 	<a href="../updateBoard">수정</a>
 	

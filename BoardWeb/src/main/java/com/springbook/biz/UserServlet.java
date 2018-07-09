@@ -42,7 +42,10 @@ public class UserServlet extends HttpServlet {
 			UserVO result = dao.getUser(vo);
 			if(result == null) {
 				//일치하는 ID가 없는 경우
-				out.print("<script>alert('id error'); history.go(-1); </script>");
+				out.print("<script>alert('id error');"
+						//+ " history.go(-1); "						
+						+ "location.href='    ';"
+						+ "</script>");
 			} else if( vo.getPassword().equals(result.getPassword()) ) {
 				//패스워드 일치하는 경우
 				//세션처리
