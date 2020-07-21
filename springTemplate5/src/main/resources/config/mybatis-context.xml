@@ -15,6 +15,7 @@
 		<constructor-arg ref="sqlSession"></constructor-arg>
 	</bean> 
 	
+	<!--   매퍼 스캔 -->
 	<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
 	  <property name="basePackage" value="com.dbal.**.mapper" />
 	</bean>

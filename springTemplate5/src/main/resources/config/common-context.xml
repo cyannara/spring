@@ -12,5 +12,5 @@
 		http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.3.xsd">
 
 	<context:component-scan base-package="com.dbal.app" />
-<!-- 	<aop:aspectj-autoproxy proxy-target-class="true"/> -->
+
 </beans>
