@@ -11,7 +11,7 @@ ${empVO.firstName } : ${evo.lastName }
 <h1>
 	Hello world! 
 </h1>
-
+version :<%=  application.getMajorVersion() %> 
 <P>  The time on the server is ${serverTime}. </P>
 </body>
 </html>
