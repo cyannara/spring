@@ -7,7 +7,7 @@
 	<title>Home</title>
 </head>
 <body>
-${empVO.firstName } : ${evo.lastName }
+
 <h1>
 	Hello world! 
 </h1>
