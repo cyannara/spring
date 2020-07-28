@@ -37,7 +37,7 @@
 				/> </security:user-service> -->
 <!-- 			<security:password-encoder hash="bcrypt"/>	 -->
 <!-- 			<security:jdbc-user-service
-				data-source-ref="authDataSource"
+				data-source-ref="dataSource"
 				users-by-username-query="select LOGIN_ID, PASSWORD, 1
 											 from T_USER
 											where LOGIN_ID = ?"
@@ -60,7 +60,7 @@
 	<context:property-placeholder
 		location="classpath:database.properties" />
 	<!-- datasource 설정 -->
-	<bean id="authDataSource"
+	<bean id="dataSource"
 		class="org.apache.commons.dbcp.BasicDataSource">
 		<property name="driverClassName" value="${jdbc.driver}"></property>
 		<property name="url" value="${jdbc.url}"></property>
