@@ -9,5 +9,6 @@
 <body>
 <h1>액세스 거부</h1>
 액세스가 거부되었습니다.
+<a href="top.jsp">top페이지로 이동</a>
 </body>
 </html>
