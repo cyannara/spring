@@ -40,15 +40,15 @@ public class HomeController {
 		return "home";
 	}
 	
-	@RequestMapping("/admin")
+	@RequestMapping("/admin/admin")
 	public String admin() {
 	    return "admin/admin";
 	}
 	
-    @RequestMapping("/user")
+    @RequestMapping("/user/user")
     public String user() {
         return "users/user";
-    }	
+    }
 
     @RequestMapping("/top")
     public String top() {
@@ -63,5 +63,5 @@ public class HomeController {
     @RequestMapping("/accessDenied")
     public String accessDenied() {
         return "accessDenied";
-    }    
+    }
 }

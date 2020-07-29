@@ -10,18 +10,18 @@ public class UserController {
     @Autowired
     UserService userService;
 
-    @RequestMapping("insertUserForm")
+    @RequestMapping("user/insertUserForm")
     public String insertUserForm(UserVO vo, Model model) {
         return "users/getUser"; // 포워드
     }
 
-    @RequestMapping("insertUser")
+    @RequestMapping("user/insertUser")
     public String insertUser(UserVO vo, Model model) {
         userService.insertUser(vo);
         return "users/getUser"; // 포워드
     }
     
-    @RequestMapping("getUser")
+    @RequestMapping("user/getUser")
     public String getUser(UserVO vo, Model model) {
         model.addAttribute("user", userService.getUser(vo));
         return "users/getUser"; // 포워드
