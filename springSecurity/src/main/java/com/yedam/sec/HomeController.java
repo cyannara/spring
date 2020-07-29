@@ -39,4 +39,29 @@ public class HomeController {
 		
 		return "home";
 	}
+	
+	@RequestMapping("/admin")
+	public String admin() {
+	    return "admin/admin";
+	}
+	
+    @RequestMapping("/user")
+    public String user() {
+        return "users/user";
+    }	
+
+    @RequestMapping("/top")
+    public String top() {
+        return "top";
+    }
+    
+    @RequestMapping("/login")
+    public String login() {
+        return "users/login";
+    }
+    
+    @RequestMapping("/accessDenied")
+    public String accessDenied() {
+        return "accessDenied";
+    }    
 }
