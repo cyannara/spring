@@ -20,7 +20,6 @@ foreign key (user_id) references t_user(id),
 primary key(role_id, user_id)
 );
 
-
 insert into t_user values( 1,'user', '1234','사용자','인사');
 insert into t_user values( 2,'admin', '1234','관리자','기획');
 insert into t_role values(1, 'ROLE_USER','일반사용자');
@@ -28,3 +27,20 @@ insert into t_role values(2, 'ROLE_ADMIN','시스템관리자');
 insert into t_user_role values(1, 1);
 insert into t_user_role values(2, 2);
 
+
+CREATE TABLE T_PROGRAM ( 
+ID              number not null, 
+PROGRAM_NAME    varchar2(200), 
+PROGRAM_URL     varchar2(200),
+PROGRAM_GROUP   varchar2(1),
+primary key(PROGRAM_ID)
+);
+
+
+CREATE TABLE T_ROLE_PROGRAM ( 
+ROLE_ID     number, 
+PROGRAM_ID  number, 
+foreign key (ROLE_ID) references t_role(ID), 
+foreign key (PROGRAM_ID) references t_program(ID), 
+primary key(ROLE_ID, PROGRAM_ID)
+);
