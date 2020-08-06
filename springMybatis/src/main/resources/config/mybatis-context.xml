@@ -7,9 +7,10 @@
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
 	    <property name="configLocation" value="classpath:sql-map-config-spring.xml" />
+        <property name="typeAliasesPackage" value="classpath:com.dbal.app.model"/>
 		<property name="mapperLocations" value="classpath:/mapper/*.xml" />
 	</bean>
-	
+	 
 	<!-- SqlSessionTemplate -->
 	<bean class="org.mybatis.spring.SqlSessionTemplate">
 		<constructor-arg ref="sqlSession"></constructor-arg>
