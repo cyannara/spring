@@ -23,8 +23,8 @@
 
 	<h1>톱 페이지입니다.</h1>
 	<ul>
-		<li><a href="user">일반 사용자용 페이지로</a></li>
-		<li><a href="admin">관리자 전용 페이지로</a></li>		
+		<li><a href="user/user">일반 사용자용 페이지로</a></li>
+		<li><a href="admin/admin">관리자 전용 페이지로</a></li>		
 	</ul>
 </body>
 </html>

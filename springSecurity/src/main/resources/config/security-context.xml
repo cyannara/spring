@@ -8,7 +8,7 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.3.xsd">
 
 	<!-- Root Context: defines shared resources visible to all other web components -->
-
+    <context:component-scan base-package="com.yedam"/>
 	<security:http>
 		<security:intercept-url pattern="/"
 			access="permitAll()" />
@@ -20,10 +20,21 @@
 			access="hasAuthority('ROLE_ADMIN')" />
 		<security:intercept-url pattern="/**"
 			access="isAuthenticated()" />
-		<security:form-login default-target-url="/top"
-			login-page="/login" login-processing-url="/processLogin"
-			authentication-failure-url="/login" username-parameter="paramLoginId"
-			password-parameter="paramPassword" />
+			
+		<security:session-management  invalid-session-url="/login">
+            <security:concurrency-control
+                max-sessions="1"  expired-url="/login" />  <!--  error-if-maximum-exceeded="true" -->
+        </security:session-management>
+         
+        <security:form-login 
+            default-target-url="/top"
+            login-page="/login" 
+            login-processing-url="/processLogin"
+            username-parameter="paramLoginId" 
+            password-parameter="paramPassword"
+            authentication-failure-url="/login"
+            authentication-success-handler-ref="customLoginSuccessHandler" />
+
 		<security:logout logout-url="/logout"
 			logout-success-url="/top" />
 		<security:access-denied-handler
@@ -38,8 +49,8 @@
 				authorities="ROLE_USER,ROLE_ADMIN" /> </security:user-service> -->
 
 			<security:jdbc-user-service
-				data-source-ref="dataSource"
-				users-by-username-query="select LOGIN_ID, '{noop}' || PASSWORD, 1
+				data-source-ref="dataSource"  
+				users-by-username-query="select LOGIN_ID,  PASSWORD, 1
 										   from T_USER
 										  where LOGIN_ID = ?"
 				authorities-by-username-query="select LOGIN_ID, ROLE_NAME
@@ -48,7 +59,7 @@
 												inner join T_USER on T_USER_ROLE.USER_ID = T_USER.ID
 												where LOGIN_ID = ?" />
 
-			<!-- <security:password-encoder hash="bcrypt"/> -->
+			<security:password-encoder hash="bcrypt"/>
 
 		</security:authentication-provider>
 	</security:authentication-manager>
