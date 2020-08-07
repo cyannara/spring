@@ -3,10 +3,12 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>    
 <!DOCTYPE html><html><head><title>  </title></head>
 <body>
-<a href="insertFormEmp">사원등록</a>
-<h3>사원목록</h3>
-<c:forEach items="${empList}" var="emp">
-    ${emp.employeeId} ${emp.firstName}  ${emp.lastName} <br>
-</c:forEach>
+
+<h3>사원조회</h3>
+
+    <div>사번: ${emp.employeeId} </div>
+    <div>이름: ${emp.firstName}  ${emp.lastName} </div>
+    <div>입사일자: ${emp.hireDate}</div>
+    <div>급여: ${emp.salary}</div>
 </body>
 </html>
