@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+    <Appenders>
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%d{HH:mm} %5p [%c] %m%n" />
+        </Console>
+    </Appenders>
+    <Loggers>
+        <Logger name="java.sql" level="DEBUG" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>
+        <Logger name="egovframework" level="DEBUG" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>   
+        <Logger name="mes" level="DEBUG" additivity="false">
+            <AppenderRef ref="console" />
+        </Logger>        
+		  <!-- log SQL with timing information, post execution -->
+	    <Logger name="jdbc.sqltiming" level="DEBUG" additivity="false">
+	        <AppenderRef ref="console" />
+	    </Logger>
+	    <Logger name="org.apache.commons" level="info" additivity="false">
+	        <AppenderRef ref="console" />
+	    </Logger>
+	    <Logger name="org.springframework.beans" level="info" additivity="false">
+	        <AppenderRef ref="console" />
+	    </Logger>	  
+	    <Logger name="org.springframework.core" level="info" additivity="false">
+	        <AppenderRef ref="console" />
+	    </Logger>
+	    <Logger name="egovframework.com.cmm.util" level="info" additivity="false">
+	        <AppenderRef ref="console" />
+	    </Logger>
+	    
+        <Root level="debug">
+            <AppenderRef ref="console" />
+        </Root>
+    </Loggers>
+</Configuration>

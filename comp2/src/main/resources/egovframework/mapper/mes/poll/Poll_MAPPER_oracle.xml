@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="mes.poll.service.impl.PollMapper">
+	
+
+	<resultMap id="poll" type="mes.poll.service.PollVO">
+		<result property="no" column="NO" />
+		<result property="name" column="NAME" />
+		<result property="content" column="CONTENT" />
+	</resultMap>
+	
+	<insert id="insertPoll">
+		<![CDATA[
+			INSERT INTO POLL 
+				( NO
+				  , NAME
+				  , CONTENT )
+			VALUES ( #{no}
+				  , #{name}
+				  , #{content} )
+		]]>
+	</insert>
+	
+	<update id="updatePoll">
+		<![CDATA[
+			UPDATE POLL
+			SET NO=#{no}
+				, NAME=#{name}
+				, CONTENT=#{content}
+						WHERE NO=#{no}
+				]]>
+	</update>
+	
+	<delete id="deletePoll">
+		<![CDATA[
+			DELETE FROM POLL 
+						WHERE NO=#{no}
+				]]>
+	</delete>
+	
+	<select id="selectPoll" resultMap="poll">
+		<![CDATA[
+			SELECT
+				NO
+				, NAME
+				, CONTENT
+			FROM POLL
+						WHERE NO=#{no}
+				]]>
+	</select>
+	
+	<select id="selectPollList" parameterType="mes.poll.service.PollVO" resultType="egovMap">
+SELECT * FROM (
+	SELECT A.*, ROWNUM RNUM FROM (
+				SELECT
+								NO
+								, NAME
+								, CONTENT
+						FROM POLL
+				WHERE 1=1
+				<if test="searchKeyword != null and searchKeyword != ''">
+					<if test="searchCondition == 0">AND
+						NO = #{searchKeyword}
+					</if>
+					<if test="searchCondition == 1">AND
+						NAME LIKE '%' || #{searchKeyword} || '%'
+					</if>
+				</if>
+					ORDER BY 
+						NO DESC
+		
+		<![CDATA[					
+	) A WHERE ROWNUM <= #{lastIndex}
+)WHERE RNUM > #{firstIndex}
+]]>
+	</select>	
+	<select id="selectPollListTotCnt" parameterType="mes.poll.service.PollVO" resultType="int">
+			SELECT COUNT(*) totcnt
+			FROM POLL
+			WHERE 1=1
+			<if test="searchKeyword != null and searchKeyword != ''">
+				<if test="searchCondition == 0">AND
+					NO = #{searchKeyword}
+				</if>
+				<if test="searchCondition == 1">AND
+					NAME LIKE '%' || #{searchKeyword} || '%'
+				</if>
+			</if>
+	</select>
+
+</mapper>
