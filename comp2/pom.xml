@@ -42,7 +42,7 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-		<!-- <repository>
+		<repository>
 			<id>egovframe_old1</id>
 			<url>http://maven.egovframe.kr:8080/maven/</url>
 			<releases>
@@ -61,7 +61,7 @@
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
-		</repository> -->
+		</repository> 
 	</repositories>
 
 	<dependencies>
