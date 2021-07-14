@@ -43,16 +43,16 @@
 				<enabled>false</enabled>
 			</snapshots>
 		</repository>
-		<!-- <repository>
+		<repository>
 			<id>egovframe_old1</id>
-			<url>http://maven.egovframe.go.kr:8080/maven/</url>
+			<url>http://maven.egovframe.kr:8080/maven/</url>
 			<releases>
 				<enabled>true</enabled>
 			</releases>
 			<snapshots>
 				<enabled>false</enabled>
 			</snapshots>
-		</repository> -->
+		</repository> 
 		<repository>
 			<id>egovframe_old2</id>
 			<url>http://www.egovframe.go.kr/maven/</url>
